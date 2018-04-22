@@ -1,9 +1,9 @@
 package ru.vsu.amm.common;
 
-import ru.vsu.amm.dao.impl.UserDaoTmpImpl;
-import ru.vsu.amm.model.User;
+import ru.vsu.amm.model.ParkingPlace;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ru.vsu.amm.services.impl.ParkingService;
 
 import java.util.List;
 
@@ -11,29 +11,15 @@ public class MainApp {
 
     public static void main(String[] args){
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-
-        UserDaoTmpImpl userDaoTmp =
-                (UserDaoTmpImpl)context.getBean("userDaoTmpImpl");
-
-        System.out.println("------Records Creation--------" );
-        userDaoTmp.insert(new User(7, "qw", "qw", "qw", "qw"));
+        ParkingService parkingService = (ParkingService) context.getBean("parkingService");
 
         System.out.println("------Listing Multiple Records--------" );
-        List<User> users = userDaoTmp.getAll();
+        ParkingPlace parkingPlaces = parkingService.findById(1);
+        List<ParkingPlace> list = parkingService.getAll();
 
-        for (User record : users) {
-            System.out.print("ID : " + record.getUserId() );
-            System.out.print(", fio : " + record.getFio() );
-            System.out.println(", email : " + record.getEmail());
-        }
+            System.out.print("Lat : " + parkingPlaces.getLatitude() );
+            System.out.print(", long : " + parkingPlaces.getLongitude() );
+            System.out.println(", free spots : " + parkingPlaces.getNumberOfFreeSpots());
 
-        System.out.println("----Updating Record with ID = 7 -----" );
-        userDaoTmp.update(new User(7, "qw", "qwerty", "qw", "qw"));
-
-        System.out.println("----Listing Record with ID = 1 -----" );
-        User user = userDaoTmp.findById(1);
-        System.out.print("ID : " + user.getUserId() );
-        System.out.print(", fio : " + user.getFio() );
-        System.out.println(", email : " + user.getEmail());
     }
 }

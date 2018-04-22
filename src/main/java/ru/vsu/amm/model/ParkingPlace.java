@@ -1,22 +1,22 @@
 package ru.vsu.amm.model;
 
-public class ParckingPlace {
+public class ParkingPlace {
 
     private int id;
     private double latitude;
     private double longitude;
     private boolean isPaid;
-    private String openTime;
-    private String closeTime;
     private int numberOfFreeSpots;
     private int numberOfSpots;
+    private String openTime;
+    private String closeTime;
     private String address;
     private String description;
 
-    public ParckingPlace() {}
+    public ParkingPlace() {}
 
-    public ParckingPlace(int id, double latitude, double longitude, boolean isPaid, String openTime, String closeTime,
-                         int numberOfFreeSpots, int numberOfSpots, String address, String description) {
+    public ParkingPlace(int id, double latitude, double longitude, boolean isPaid, String openTime, String closeTime,
+                        int numberOfFreeSpots, int numberOfSpots, String address, String description) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -29,7 +29,7 @@ public class ParckingPlace {
         this.description = description;
     }
 
-    public ParckingPlace(int id, double latitude, double longitude, int numberOfFreeSpots, int numberOfSpots, String address) {
+    public ParkingPlace(int id, double latitude, double longitude, int numberOfFreeSpots, int numberOfSpots, String address) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -123,7 +123,7 @@ public class ParckingPlace {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ParckingPlace that = (ParckingPlace) o;
+        ParkingPlace that = (ParkingPlace) o;
 
         if (id != that.id) return false;
         if (Double.compare(that.latitude, latitude) != 0) return false;
@@ -146,7 +146,7 @@ public class ParckingPlace {
 
     @Override
     public String toString() {
-        return ParckingPlace.class.getSimpleName() +
+        return ParkingPlace.class.getSimpleName() +
                 "{id=" + id +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +

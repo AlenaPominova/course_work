@@ -1,7 +1,7 @@
 package ru.vsu.amm.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 public class User implements Serializable {
 
@@ -11,9 +11,10 @@ public class User implements Serializable {
     private String fio;
     private String email;
     private String password;
+    private String confirmPassword;
     private String description;
-    private String role;
-    private List<ParckingPlace> favoritePlaces;
+    private Set<Role> roles;
+    private Set<ParkingPlace> favoritePlaces;
 
     public User() {}
 
@@ -57,6 +58,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -65,19 +74,19 @@ public class User implements Serializable {
         this.description = description;
     }
 
-    public String getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
-    public List<ParckingPlace> getFavoritePlaces() {
+    public Set<ParkingPlace> getFavoritePlaces() {
         return favoritePlaces;
     }
 
-    public void setFavoritePlaces(List<ParckingPlace> favoritePlaces) {
+    public void setFavoritePlaces(Set<ParkingPlace> favoritePlaces) {
         this.favoritePlaces = favoritePlaces;
     }
 
