@@ -3,6 +3,13 @@ package ru.vsu.amm.model;
 import java.io.Serializable;
 import java.util.Set;
 
+/**
+ * Class of users
+ *{@value} count - general number of existing instances of this class
+ *@author Alena Pominova
+ *@version 1.0
+ */
+
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -13,10 +20,11 @@ public class User implements Serializable {
     private String password;
     private String confirmPassword;
     private String description;
-    private Set<Role> roles;
+    private Role role;
     private Set<ParkingPlace> favoritePlaces;
 
-    public User() {}
+    public User() {
+    }
 
     public User(int user_id, String fio, String email, String password, String description) {
         this.user_id = user_id;
@@ -74,12 +82,12 @@ public class User implements Serializable {
         this.description = description;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Set<ParkingPlace> getFavoritePlaces() {

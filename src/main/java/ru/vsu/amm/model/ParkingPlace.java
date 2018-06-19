@@ -1,10 +1,16 @@
 package ru.vsu.amm.model;
 
+/**
+ * Class of parking places
+ *@author Alena Pominova
+ *@version 1.0
+ */
 public class ParkingPlace {
 
     private int id;
     private double latitude;
     private double longitude;
+    private double price;
     private boolean isPaid;
     private int numberOfFreeSpots;
     private int numberOfSpots;
@@ -15,11 +21,24 @@ public class ParkingPlace {
 
     public ParkingPlace() {}
 
-    public ParkingPlace(int id, double latitude, double longitude, boolean isPaid, String openTime, String closeTime,
+    /**
+     * @param id
+     * @param latitude
+     * @param longitude
+     * @param price
+     * @param openTime
+     * @param closeTime
+     * @param numberOfFreeSpots
+     * @param numberOfSpots
+     * @param address
+     * @param description
+     */
+    public ParkingPlace(int id, double latitude, double longitude, double price, boolean isPaid, String openTime, String closeTime,
                         int numberOfFreeSpots, int numberOfSpots, String address, String description) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.price = price;
         this.isPaid = isPaid;
         this.openTime = openTime;
         this.closeTime = closeTime;
@@ -60,6 +79,18 @@ public class ParkingPlace {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
     }
 
     public boolean getIsPaid() {

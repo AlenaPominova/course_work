@@ -2,6 +2,11 @@ package ru.vsu.amm.model;
 
 import java.util.Set;
 
+/**
+ * Class of roles
+ *@author Alena Pominova
+ *@version 1.0
+ */
 public class Role {
     private int id;
     private String name;

@@ -6,8 +6,20 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class for mapping instances of {@link User}
+ * @author Alena Pominova
+ * @version 1.0
+ */
 public class UserMapper implements RowMapper<User> {
 
+    /**
+     * method for mapping ResultSet to fields of User class
+     * @see User
+     * @see ResultSet
+     * @return User
+     */
+    @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         User user = new User();
         user.setUserId(rs.getInt("user_id"));

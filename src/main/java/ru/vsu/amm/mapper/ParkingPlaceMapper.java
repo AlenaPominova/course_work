@@ -7,8 +7,19 @@ import org.springframework.lang.Nullable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class for mapping instances of {@link ParkingPlace}
+ * @author Alena Pominova
+ * @version 1.0
+ */
 public class ParkingPlaceMapper implements RowMapper<ParkingPlace> {
 
+    /**
+     * method for mapping ResultSet to fields of ParkingPlace class
+     * @see ParkingPlace
+     * @see ResultSet
+     * @return ParkingPlace
+     */
     @Nullable
     @Override
     public ParkingPlace mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -16,6 +27,7 @@ public class ParkingPlaceMapper implements RowMapper<ParkingPlace> {
         parkingPlace.setId(resultSet.getInt("place_id"));
         parkingPlace.setLatitude(resultSet.getDouble("latitude"));
         parkingPlace.setLongitude(resultSet.getDouble("longitude"));
+        parkingPlace.setPrice(resultSet.getDouble("price"));
         parkingPlace.setPaid(resultSet.getBoolean("is_paid"));
         parkingPlace.setOpenTime(resultSet.getString("open_time"));
         parkingPlace.setCloseTime(resultSet.getString("close_time"));
