@@ -29,15 +29,6 @@
     </properties>
 
     <dependencies>
-
-        <!-- JUnit testing framework -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-
         <!-- Spring framework -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -63,7 +54,7 @@
             <version>${spring.version}</version>
         </dependency>
 
-
+        <!-- PostgreSQL -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -104,6 +95,7 @@
             <version>3.3.7</version>
         </dependency>
 
+        <!-- Spring Security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
