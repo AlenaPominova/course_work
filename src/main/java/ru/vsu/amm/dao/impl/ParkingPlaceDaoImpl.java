@@ -1,12 +1,14 @@
 package ru.vsu.amm.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import ru.vsu.amm.dao.IDao;
 import ru.vsu.amm.mapper.ParkingPlaceMapper;
 import ru.vsu.amm.model.ParkingPlace;
 import org.springframework.jdbc.core.JdbcTemplate;
-import ru.vsu.amm.queries.ParkingQueries;
+import ru.vsu.amm.queries.Factory.QueryFactory;
+import ru.vsu.amm.queries.PostgreSQLQuery.PostgreSQLParkingQueries;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -18,16 +20,20 @@ import java.util.List;
  */
 @Component("ParkingPlaceDaoImpl")
 public class ParkingPlaceDaoImpl implements IDao<ParkingPlace> {
+    private final String FACTORY_TYPE = "PostgreSQLQueryFactory";
+
     private JdbcTemplate jdbcTemplateObject;
+    private QueryFactory queryFactory;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
+        this.queryFactory = QueryFactory.getFactory("PostgreSQL");
     }
 
     /**
      * method for inserting parking place in db
-     * @see ParkingQueries#CREATE_PARKIING
+     * @see PostgreSQLParkingQueries#CREATE_PARKIING
      * @return ParkingPlace
      */
     @Override
@@ -36,22 +42,22 @@ public class ParkingPlaceDaoImpl implements IDao<ParkingPlace> {
                 obj.getId(), obj.getLatitude(), obj.getLongitude(), obj.getPrice(), obj.getIsPaid(), obj.getOpenTime(),
                 obj.getCloseTime(), obj.getNumberOfFreeSpots(), obj.getNumberOfSpots(), obj.getAddress(), obj.getDescription()
         };
-        return jdbcTemplateObject.queryForObject(ParkingQueries.CREATE_PARKIING, params, new ParkingPlaceMapper());
+        return jdbcTemplateObject.queryForObject(queryFactory.createParking(), params, new ParkingPlaceMapper());
     }
 
     /**
      * method for deleting parking place from db
-     * @see ParkingQueries#DELETE_PARKING
+     * @see PostgreSQLParkingQueries#DELETE_PARKING
      * @param id
      */
     @Override
     public void delete(int id) {
-        jdbcTemplateObject.update(ParkingQueries.DELETE_PARKING, id);
+        jdbcTemplateObject.update(queryFactory.deleteParking(), id);
     }
 
     /**
      * method for updating parking place in db
-     * @see ParkingQueries#UPDATE_PARKING
+     * @see PostgreSQLParkingQueries#UPDATE_PARKING
      * @param obj
      * @return ParkingPlace
      */
@@ -61,18 +67,18 @@ public class ParkingPlaceDaoImpl implements IDao<ParkingPlace> {
                 obj.getLatitude(), obj.getLongitude(), obj.getPrice(), obj.getIsPaid(), obj.getOpenTime(), obj.getCloseTime(),
                 obj.getNumberOfFreeSpots(), obj.getNumberOfSpots(), obj.getAddress(), obj.getDescription(), obj.getId()
         };
-        return jdbcTemplateObject.queryForObject(ParkingQueries.UPDATE_PARKING, params, new ParkingPlaceMapper());
+        return jdbcTemplateObject.queryForObject(queryFactory.updateParking(), params, new ParkingPlaceMapper());
     }
 
     /**
      * method for finding parking place by id in db
-     * @see ParkingQueries#FIND_BY_ID
+     * @see PostgreSQLParkingQueries#FIND_BY_ID
      * @param id
      * @return ParkingPlace
      */
     @Override
     public ParkingPlace findById(int id) {
-        ParkingPlace parkingPlace = jdbcTemplateObject.queryForObject(ParkingQueries.FIND_BY_ID,
+        ParkingPlace parkingPlace = jdbcTemplateObject.queryForObject(queryFactory.findByIdParking(),
                 new Object[]{id}, new ParkingPlaceMapper());
 
         return parkingPlace;
@@ -80,12 +86,12 @@ public class ParkingPlaceDaoImpl implements IDao<ParkingPlace> {
 
     /**
      * method for finding parking place by address in db
-     * @see ParkingQueries#FIND_BY_ADDRESS
+     * @see PostgreSQLParkingQueries#FIND_BY_ADDRESS
      * @param address
      * @return ParkingPlace
      */
     public ParkingPlace findByAddress(String address) {
-        ParkingPlace parkingPlace = jdbcTemplateObject.queryForObject(ParkingQueries.FIND_BY_ADDRESS,
+        ParkingPlace parkingPlace = jdbcTemplateObject.queryForObject(queryFactory.findByAddressParking(),
                 new Object[]{address}, new ParkingPlaceMapper());
 
         return parkingPlace;
@@ -93,10 +99,10 @@ public class ParkingPlaceDaoImpl implements IDao<ParkingPlace> {
 
     /**
      * method for finding all parking places in db
-     * @see ParkingQueries#GET_ALL
+     * @see PostgreSQLParkingQueries#GET_ALL
      * @return List<ParkingPlace>
      */
     public List<ParkingPlace> getAll() {
-        return jdbcTemplateObject.query(ParkingQueries.GET_ALL, new ParkingPlaceMapper());
+        return jdbcTemplateObject.query(queryFactory.getAllParking(), new ParkingPlaceMapper());
     }
 }

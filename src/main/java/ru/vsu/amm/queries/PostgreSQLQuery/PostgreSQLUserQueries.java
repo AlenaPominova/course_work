@@ -1,6 +1,6 @@
-package ru.vsu.amm.queries;
+package ru.vsu.amm.queries.PostgreSQLQuery;
 
-public class UserQueries {
+public class PostgreSQLUserQueries {
 
     public static final String CREATE_USER = "INSERT INTO public.user(" +
                                                    " user_id, email, password, fio, description, role_id)" +

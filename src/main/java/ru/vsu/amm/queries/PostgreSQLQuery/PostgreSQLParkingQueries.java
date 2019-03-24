@@ -1,6 +1,6 @@
-package ru.vsu.amm.queries;
+package ru.vsu.amm.queries.PostgreSQLQuery;
 
-public class ParkingQueries {
+public class PostgreSQLParkingQueries {
 
     public static String CREATE_PARKIING = "INSERT INTO public.parcking_place(\" +\n" +
             " place_id, latitude, longitude, price, is_paid, open_time, close_time, " +
