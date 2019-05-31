@@ -43,13 +43,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
-                .usersByUsernameQuery("select email, password, 1 as enabled from \"user\" where email=?")
-                .authoritiesByUsernameQuery("SELECT U.email, R.name\n" +
-                                                "\tFROM \"user\" U\n" +
-                                                "\tjoin role R\n" +
-                                                "\t on U.role_id = R.role_id\n" +
-                                                "\twhere U.email = ?");
+//        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
+//                .usersByUsernameQuery("select email, password, 1 as enabled from \"user\" where email=?")
+//                .authoritiesByUsernameQuery("SELECT U.email as username, R.name as role FROM public.user U\n" +
+//                        "join public.role R\n" +
+//                        "on U.role_id = R.role_id\n" +
+//                        "where U.email =?");
+        auth.inMemoryAuthentication().withUser("ivanov@mail.ru").password("ivanov").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("petrov@gmail.com").password("petrov").roles("USER");
     }
 
     @Bean
@@ -60,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/map", "/singup", "/singin", "/resources/**").permitAll()
+                .antMatchers("/", "/map", "/singup", "/singin", "/resources/**", "/profile").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN").anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/singin").failureUrl("/singin?error")
@@ -69,8 +70,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutSuccessUrl("/singin?logout")
                 .and()
-                .csrf();
-
-//        http.exceptionHandling().accessDeniedPage("/403");
+                .csrf().disable();
     }
 }

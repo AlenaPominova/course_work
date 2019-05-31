@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link href="../../webapp/resources/css/mapStyle.css" th:href="@{/css/mapStyle.css}" rel="stylesheet" />
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript" th:src="@{/resources/libs/jquery-3.3.1.min.js}"></script>
+</head>
+<body>
+<div id="headerMain">
+    <div id="header">
+        <ul class="menu-top">
+            <li id="mt-first"><a href="">Карта</a></li>
+            <li id="mt-2"><a>Поиск</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="map">
+    <div id="map" style="height: 100%;"></div>
+</div>
+
+<div class="left-panel" id="left-panel1">
+    <div id="close-btn1">X</div>
+    <ul>
+        <li>
+            <label>Улица: </label>
+            <input type="text" name="street">
+        </li>
+        <li>
+            <label>Дом: </label>
+            <input type="text" name="house">
+        </li>
+    </ul>
+</div>
+
+<footer class="footer">
+    <ul class="name">
+        <li id="first">JustParkIt</li>
+        <li id="second">email: justparkit@gmail.com</li>
+        <li id="fird">тел.: +7 (908) 123 45 67</li>
+    </ul>
+</footer>
+
+<script>
+    ymaps.ready(init);
+
+    function init(){
+        myMap = new ymaps.Map("map", {
+                center: [51.67, 39.18],
+                zoom: 13,
+                controls: []
+            },
+            clusterer = new ymaps.Clusterer({
+                preset: 'islands#invertedRedClusterIcons',
+                groupByCoordinates: false,
+                clusterDisableClickZoom: false,
+                clusterHideIconOnBalloonOpen: false,
+                geoObjectHideIconOnBalloonOpen: false
+            })
+        );
+        myMap.controls.remove('zoomControl');
+        myMap.controls.remove('geolocationControl');
+        myMap.controls.remove('trafficControl');
+        myMap.controls.remove('typeSelector');
+        myMap.controls.remove('fullscreenControl');
+
+        var searchControl = new ymaps.control.SearchControl({
+            options: {
+                float: 'left',
+                floatIndex: 200,
+                noPlacemark: true,
+                searchControlMaxWidth: [30, 72, 500],
+                fitMaxWidth: true
+            }
+        });
+        myMap.controls.add(searchControl);
+    }
+
+
+    var search = document.getElementById('mt-2');
+    search.onclick = function() {
+        var panel = document.getElementById('left-panel');
+        panel.style.display = 'block';
+    };
+</script>
+</body>
+</html>

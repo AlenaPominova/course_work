@@ -1,8 +1,6 @@
 package ru.vsu.amm.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,11 +42,11 @@ public class HomeController {
         return model;
     }
 
-    @RequestMapping(value = {"/profile"}, method = RequestMethod.GET)//TODO: нифига не работает
-    public ModelAndView profile(/*@AuthenticationPrincipal User user*/) {
-        ModelAndView model = new ModelAndView("map");
-        model.addObject("user", userService.findByEmail(userService.findByEmail("petrov@gmail.com").toString()));
-        return model;
+    @RequestMapping(value = {"/profile"}, method = RequestMethod.GET)
+    public String profile(/*@AuthenticationPrincipal User user*/) {
+//        ModelAndView model = new ModelAndView("map");
+//        model.addObject("user", userService.findByEmail(userService.findByEmail("petrov@gmail.com").toString()));
+        return "profile";
     }
 
     @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
