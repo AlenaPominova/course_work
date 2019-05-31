@@ -41,11 +41,10 @@ public class HomeController {
     public ModelAndView greeting() {
         ModelAndView model = new ModelAndView("map");
         model.addObject("object", parkingService.getAll());
-
         return model;
     }
 
-    @RequestMapping(value = {"/profile"}, method = RequestMethod.GET)//TODO: не фига не работает
+    @RequestMapping(value = {"/profile"}, method = RequestMethod.GET)//TODO: нифига не работает
     public ModelAndView profile(/*@AuthenticationPrincipal User user*/) {
         ModelAndView model = new ModelAndView("map");
         model.addObject("user", userService.findByEmail(userService.findByEmail("petrov@gmail.com").toString()));
@@ -54,7 +53,6 @@ public class HomeController {
 
     @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
     public String admin() {
-
         return "admin";
     }
 
