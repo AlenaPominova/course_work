@@ -50,19 +50,19 @@ ul.panels li {
     border: none;
 }
 
-#allParks {
-    height: 100px;
-    width: 100px;
-    margin-left: 20px;
-    background-color: green;
-}
+/*#allParks {*/
+    /*height: 100px;*/
+    /*width: 100px;*/
+    /*margin-left: 20px;*/
+    /*background-color: green;*/
+/*}*/
 
-#selectPark {
-    height: 100px;
-    width: 100px;
-    margin-right: 20px;
-    background-color: red;
-}
+/*#selectPark {*/
+    /*height: 100px;*/
+    /*width: 100px;*/
+    /*margin-right: 20px;*/
+    /*background-color: red;*/
+/*}*/
 
 /*------------------------------------------------FOOTER---------------------------------------------------*/
 .footer {
@@ -112,4 +112,24 @@ a {
 }
 a:hover {
     color: #EFA24B;
+}
+
+#container {
+    width:1400px; /*Ширина блока*/
+    height:650px; /*Высота блока*/
+    margin:0 auto;
+    overflow:visible;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-700px; /*Смещаем блок на половину всей ширины влево*/
+    margin-top:-350px; /*Смещаем блок на половину высоты вверх*/
+    background:lightblue;
+}
+
+.box div{
+    width:650px;
+    height: 650px;
+    display:inline-block;
+    border:1px solid black
 }
