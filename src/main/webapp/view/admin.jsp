@@ -35,19 +35,41 @@
     </div>
 </div>
 
-<div id="center">
-    <ul class="panels">
-        <li>
-            <div id="allParks">
+<div id="container" align="center" class="box">
 
-            </div>
-        </li>
-        <li>
-            <div id="selectPark">
+    <div id="allParks">
+        список парковок
+        <%--<div id="parkList">--%>
+        <ul>
+            <c:forEach items="${object}" var="i">
+            <li onClick="document.getElementById('number').innerHTML = 'Парковка № ${i.id}';
+                    document.getElementById('address').value = '${i.address}';
+                    document.getElementById('freeSpots').value = '${i.numberOfFreeSpots}';
+                    document.getElementById('price').value = '';
+                    if (${i.isPaid}) {
+                    document.getElementById('time').value = '${i.openTime} - ${i.closeTime}';
+                    document.getElementById('price').value = ${i.price};
+                    document.getElementById('paid').checked = true;
+                    }
+                    else {
+                    document.getElementById('time').value = 'круглосуточно';
+                    document.getElementById('paid').checked = false;
+                    }">${i.address}</li>
+            </c:forEach>
+        </ul>
+        <%--</div>--%>
+    </div>
+    <div id="selectPark">
+        <label id="number"></label>
+        <label>Адрес: </label> <input id="address"/>
+        <label>Свободных мест: </label> <input id="freeSpots">
+        <label>Время работы: </label> <input id="time">
+        <label>Платная: </label> <input type="checkbox" id="paid">
+        <label>Цена: </label> <input id="price">
+        <input class="button" type="submit" value="Сохранить" >
+        <input class="button" type="submit" value="Удалить" >
+    </div>
 
-            </div>
-        </li>
-    </ul>
 </div>
 
 <footer class="footer">

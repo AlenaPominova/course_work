@@ -50,8 +50,10 @@ public class HomeController {
     }
 
     @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
-    public String admin() {
-        return "admin";
+    public ModelAndView admin() {
+        ModelAndView model = new ModelAndView("admin");
+        model.addObject("object", parkingService.getAll());
+        return model;
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)

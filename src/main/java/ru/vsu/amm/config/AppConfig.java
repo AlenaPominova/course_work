@@ -18,42 +18,42 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 @Import({ WebSecurityConfig.class })
 public class AppConfig {
 
-//    @Bean
-//    public InternalResourceViewResolver viewResolver() {
-//        InternalResourceViewResolver viewResolver
-//                = new InternalResourceViewResolver();
-//        viewResolver.setViewClass(JstlView.class);
-//        viewResolver.setPrefix("/view/");
-//        viewResolver.setSuffix(".jsp");
-//        return viewResolver;
-//    }
-
     @Bean
-    @Description("Thymeleaf Template Resolver")
-    public SpringResourceTemplateResolver templateResolver() {
-        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setPrefix("/WEB-INF/templates/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
-
-        return templateResolver;
-    }
-
-    @Bean
-    @Description("Thymeleaf Template Engine")
-    public SpringTemplateEngine templateEngine() {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver());
-//        templateEngine.setTemplateEngineMessageSource(messageSource());
-        return templateEngine;
-    }
-
-    @Bean
-    @Description("Thymeleaf View Resolver")
-    public ThymeleafViewResolver viewResolver() {
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine());
-        viewResolver.setOrder(1);
+    public InternalResourceViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver
+                = new InternalResourceViewResolver();
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("/view/");
+        viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
+
+//    @Bean
+//    @Description("Thymeleaf Template Resolver")
+//    public SpringResourceTemplateResolver templateResolver() {
+//        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+//        templateResolver.setPrefix("/WEB-INF/templates/");
+//        templateResolver.setSuffix(".html");
+//        templateResolver.setTemplateMode("HTML5");
+//
+//        return templateResolver;
+//    }
+//
+//    @Bean
+//    @Description("Thymeleaf Template Engine")
+//    public SpringTemplateEngine templateEngine() {
+//        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+//        templateEngine.setTemplateResolver(templateResolver());
+////        templateEngine.setTemplateEngineMessageSource(messageSource());
+//        return templateEngine;
+//    }
+//
+//    @Bean
+//    @Description("Thymeleaf View Resolver")
+//    public ThymeleafViewResolver viewResolver() {
+//        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+//        viewResolver.setTemplateEngine(templateEngine());
+//        viewResolver.setOrder(1);
+//        return viewResolver;
+//    }
 }

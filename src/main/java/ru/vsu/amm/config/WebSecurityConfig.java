@@ -61,8 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/map", "/singup", "/singin", "/resources/**", "/profile").permitAll()
-                .antMatchers("/admin").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers("/", "/map", "/singup", "/singin", "/resources/**", "/admin", "/profile").permitAll()
+//                .antMatchers("/admin").hasRole("ADMIN").anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/singin").failureUrl("/singin?error")
                 .usernameParameter("email").passwordParameter("password")

@@ -118,12 +118,15 @@ controls: []
         geoObjectHideIconOnBalloonOpen: false
     })
 );
+
+    /* Remove unnecessary map's elements */
     myMap.controls.remove('zoomControl');
     myMap.controls.remove('geolocationControl');
     myMap.controls.remove('trafficControl');
     myMap.controls.remove('typeSelector');
     myMap.controls.remove('fullscreenControl');
 
+    /* Move search panel to particular place on the map */
     var searchControl = new ymaps.control.SearchControl({
         options: {
             float: 'left',
@@ -135,7 +138,9 @@ controls: []
     });
     myMap.controls.add(searchControl);
 
+    /* Send all parks there */
     <c:forEach items="${object}" var="i">
+        /* Place each parking place on the map */
         var myPlacemark = new ymaps.Placemark([${i.latitude}, ${i.longitude}],
             {
                 hintContent: 'Свободных мест: ${i.numberOfFreeSpots}'
@@ -144,15 +149,19 @@ controls: []
                 preset : 'islands#redDotIcon'
             }
         );
+
+        /* Add click event to each mark */
         myPlacemark.events.add('click', function (e) {
+            /* Remove custom search window TODO: delete this window */
             var searchPanel = document.getElementById('left-panel1');
             searchPanel.style.display = 'none';
 
+            /* Open special window with full info about park */
             var panel = document.getElementById('left-panel');
             panel.style.display = 'block';
 
-
-            document.getElementById('number').innerHTML = 'Парковка №${i.id}';
+            /* Fill information */
+            document.getElementById('number').innerHTML = 'Парковка № ${i.id}';
             document.getElementById('address').innerHTML = 'Адрес: ${i.address}';
             document.getElementById('freeSpots').innerHTML = 'Свободных мест: ${i.numberOfFreeSpots}';
             document.getElementById('price').innerHTML = '';
