@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven />
+
+    <context:component-scan base-package="ru.vsu.amm.controllers" />
+
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/img/**" location="/resources/img/" />
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/view/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <bean
+            class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>resources/properties/database.properties</value>
+        </property>
+    </bean>
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+    <!-- Definition for UserService bean -->
+    <bean id = "userService"
+          class = "ru.vsu.amm.services.impl.UserService">
+    </bean>
+
+    <!-- Definition for ParkingService bean -->
+    <bean id = "parkingService"
+          class = "ru.vsu.amm.services.impl.ParkingService">
+    </bean>
+
+</beans>
