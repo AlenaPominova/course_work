@@ -49,13 +49,6 @@ public class HomeController {
         return "profile";
     }
 
-    @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
-    public ModelAndView admin() {
-        ModelAndView model = new ModelAndView("admin");
-        model.addObject("object", parkingService.getAll());
-        return model;
-    }
-
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public void getSearchResultViaAjax(HttpServletResponse res) {
         String response = "";

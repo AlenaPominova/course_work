@@ -26,7 +26,8 @@ ul.menu-top li {
 }
 
 ul.menu-top #mt-first{
-    margin-right: 70%;
+    /*margin-right: 70%; */
+    margin-right: 87.5%;
     height: 40px;
 }
 
@@ -35,10 +36,14 @@ ul.menu-top #mt-4 {
 }
 
 /*------------------------------------------------BODY---------------------------------------------------*/
-/*body {*/
-    /*background: url(/resources/img/parkovka.jpg) no-repeat;*/
-    /*background-size: cover;*/
-/*}*/
+body {
+    background: url(/resources/img/parkovka.jpg) no-repeat;
+    background-size: cover;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
 
 /*------------------------------------------------CENTER---------------------------------------------------*/
 ul.panels li {
@@ -46,6 +51,15 @@ ul.panels li {
     list-style: none;
     padding: 5px;
     border: none;
+}
+
+.liPark {
+    cursor: pointer;
+    text-align: left;
+}
+
+#allParks li:hover {
+    color: #efa24b;
 }
 
 /*#allParks {*/
@@ -62,6 +76,10 @@ ul.panels li {
     /*background-color: red;*/
 /*}*/
 
+#selectPark {
+    text-align: left;
+}
+
 /*------------------------------------------------FOOTER---------------------------------------------------*/
 .footer {
     position: absolute;
@@ -70,6 +88,7 @@ ul.panels li {
     width: 100%;
     height: 50px;
     background: #292525;
+    font-family: 'Montserrat', sans-serif;
 }
 
 ul.name li {
@@ -83,7 +102,7 @@ ul.name li {
 }
 
 ul.name #first{
-    margin-right: 65%;
+    margin-right: 61%;
     height: 40px;
     font-size: 1.2em;
 }
@@ -113,32 +132,38 @@ a:hover {
 }
 
 #container {
-    width:1000px; /*Ширина блока*/
-    height:400px; /*Высота блока*/
-    margin:0 auto;
-    overflow:visible;
-    position:absolute;
-    left:50%;
-    top:50%;
-    margin-left:-500px; /*Смещаем блок на половину всей ширины влево*/
-    margin-top:-200px; /*Смещаем блок на половину высоты вверх*/
+    width: 100%;
+    height: 400px;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+#container h1 {
+    font-size: 1em;
+    text-align: center;
 }
 
 .box div{
-    width:490px;
-    height: 400px;
-    display:inline-block;
-    border:1px solid black;
+    width: 45%;
+    height: 100%;
+    margin: 12px;
+    padding: 20px;
+    float: left;
+    border: 1px solid black;
+    border-radius: 10px;
     background-color: #7A746C;
     color: white;
     font-size: 1.3em;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/*#selectPark input{*/
-    /*height: 10px;*/
-    /*width: 20px;*/
-/*}*/
+#selectPark input{
+    width: 210px;
+}
+
+#selectPark{
+    display: none;
+}
 
 #selectPark .button{
     width: 150px;
@@ -151,12 +176,37 @@ a:hover {
 }
 
  /*scroll line*/
-/*#parkList {*/
-    /*overflow: auto;*/
-/*}*/
+#parkList {
+    overflow: auto;
+}
+
+#allParks ul{
+    max-height: 85%;
+    overflow: auto;
+}
 
 #allParks li{
     list-style: none;
 }
 
-
+input[type="submit"] {
+    align-items: left;
+    text-align: left;
+    cursor: pointer;
+    color: white;
+    background-color: transparent;
+    box-sizing: unset;
+    padding: 0;
+    border-width: 0;
+    border-style: unset;
+    border-color: unset;
+    border-image: unset;
+    text-decoration: none;
+    outline: none;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 19px;
+    color: white;
+}
