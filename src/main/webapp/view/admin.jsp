@@ -41,6 +41,7 @@
         <h1>Cписок парковок</h1>
         <ul>
             <li class="liPark" onClick="
+                    document.getElementById('number').innerHTML = 'Новая парковка';
                     document.getElementById('address').value = '';
                     document.getElementById('freeSpots').value = '';
                     document.getElementById('price').value = '';
