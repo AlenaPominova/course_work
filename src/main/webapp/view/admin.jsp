@@ -39,8 +39,20 @@
 
     <div id="allParks">
         <h1>Cписок парковок</h1>
-        <%--<div id="parkList">--%>
         <ul>
+            <li class="liPark" onClick="
+                    document.getElementById('address').value = '';
+                    document.getElementById('freeSpots').value = '';
+                    document.getElementById('price').value = '';
+                    document.getElementById('price').value = '';
+                    document.getElementById('paid').checked = false;
+                    document.getElementById('time').value = 'круглосуточно';
+
+                    document.getElementById('selectPark').style.display = 'block';
+                    document.getElementById('deleteButton').style.display = 'none';
+                    document.getElementById('updateButton').style.display = 'none';
+                    document.getElementById('saveButton').style.display = 'block'
+                    ">Создать новую парковку</li>
             <c:forEach items="${object}" var="i">
             <li class="liPark" onClick="document.getElementById('number').innerHTML = 'Парковка № ${i.id}';
                     document.getElementById('address').value = '${i.address}';
@@ -55,22 +67,26 @@
                     document.getElementById('time').value = 'круглосуточно';
                     document.getElementById('paid').checked = false;
                     }
-                    document.getElementById('selectPark').style.display = 'block'
+                    document.getElementById('selectPark').style.display = 'block';
+                    document.getElementById('deleteButton').style.display = 'inline-block';
+                    document.getElementById('updateButton').style.display = 'inline-block';
+                    document.getElementById('saveButton').style.display = 'none'
                     ">${i.address}
             </li>
             </c:forEach>
         </ul>
-        <%--</div>--%>
     </div>
     <div id="selectPark">
         <h1 id="number">Выберите парковку</h1>
-        <label>Адрес: </label> <input id="address"/> <br>
-        <label>Свободных мест: </label> <input id="freeSpots"> <br>
-        <label>Время работы: </label> <input id="time"> <br>
+        <label>Адрес: </label> <input id="address" style="width: 300px;"/> <br>
+        <label>Свободных мест: </label> <input id="freeSpots" style="width: 50px;"> <br>
+        <label>Время работы: </label> <input id="time" style="width: 150px;"> <br>
         <label>Платная: </label> <input type="checkbox" id="paid"> <br>
-        <label>Цена: </label> <input id="price"> <br> <br> <br>
-        <input class="button" type="submit" value="Сохранить" >
-        <input class="button" type="submit" value="Удалить" >
+        <label>Цена: </label> <input id="price" style="width: 50px;"> <label style="font-size: 0.8em">р./ч.</label> <br> <br> <br>
+        <br> <br> <br>
+        <input class="button" id="saveButton" type="submit" value="Сохранить">
+        <input class="button" id="updateButton" type="submit" value="Обновить" >
+        <input class="button" id="deleteButton" type="submit" value="Удалить" >
     </div>
 
 </div>
