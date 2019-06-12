@@ -30,8 +30,8 @@ public class ParkingService implements IService<ParkingPlace> {
     }
 
     @Override
-    public void delete(ParkingPlace obj) {
-        parkingDao.delete(obj.getId());
+    public void delete(String id) {
+        parkingDao.delete(Integer.valueOf(id));
     }
 
     @Override

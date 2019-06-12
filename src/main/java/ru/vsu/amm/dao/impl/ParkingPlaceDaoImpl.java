@@ -52,6 +52,7 @@ public class ParkingPlaceDaoImpl implements IDao<ParkingPlace> {
      */
     @Override
     public void delete(int id) {
+        jdbcTemplateObject.update(queryFactory.deleteFavPlaces(), id);
         jdbcTemplateObject.update(queryFactory.deleteParking(), id);
     }
 

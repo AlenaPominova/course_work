@@ -59,8 +59,8 @@ public class UserService implements IService<User> {
     }
 
     @Override
-    public void delete(User obj) {
-        userDao.delete(obj.getUserId());
+    public void delete(String id) {
+        userDao.delete(Integer.valueOf(id));
     }
 
     @Override

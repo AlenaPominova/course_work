@@ -75,4 +75,9 @@ public class PostgreSQLQueryFactory extends QueryFactory {
     public String getFavPlaces() {
         return PostgreSQLUserQueries.GET_FAV_PLACES;
     }
+
+    @Override
+    public String deleteFavPlaces() {
+        return PostgreSQLParkingQueries.DELETE_FAVORITE_PLACES;
+    }
 }

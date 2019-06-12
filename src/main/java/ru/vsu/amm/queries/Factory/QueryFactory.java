@@ -21,6 +21,7 @@ public abstract class QueryFactory {
 
     public abstract String getRole();
     public abstract String getFavPlaces();
+    public abstract String deleteFavPlaces();
 
     public static QueryFactory getFactory(String factoryType){
         switch (factoryType){

@@ -101,44 +101,44 @@
 
 
 <script>
-ymaps.ready(init);
+    ymaps.ready(init);
 
-function init(){
-myMap = new ymaps.Map("map", {
-center: [51.67, 39.18],
-zoom: 13,
-controls: []
-},
-    clusterer = new ymaps.Clusterer({
-        preset: 'islands#invertedRedClusterIcons',
-        groupByCoordinates: false,
-        clusterDisableClickZoom: false,
-        clusterHideIconOnBalloonOpen: false,
-        geoObjectHideIconOnBalloonOpen: false
-    })
-);
+    function init(){
+        myMap = new ymaps.Map("map", {
+                center: [51.67, 39.18],
+                zoom: 13,
+                controls: []
+            },
+            clusterer = new ymaps.Clusterer({
+                preset: 'islands#invertedRedClusterIcons',
+                groupByCoordinates: false,
+                clusterDisableClickZoom: false,
+                clusterHideIconOnBalloonOpen: false,
+                geoObjectHideIconOnBalloonOpen: false
+            })
+        );
 
-    /* Remove unnecessary map's elements */
-    myMap.controls.remove('zoomControl');
-    myMap.controls.remove('geolocationControl');
-    myMap.controls.remove('trafficControl');
-    myMap.controls.remove('typeSelector');
-    myMap.controls.remove('fullscreenControl');
+        /* Remove unnecessary map's elements */
+        myMap.controls.remove('zoomControl');
+        myMap.controls.remove('geolocationControl');
+        myMap.controls.remove('trafficControl');
+        myMap.controls.remove('typeSelector');
+        myMap.controls.remove('fullscreenControl');
 
-    /* Move search panel to particular place on the map */
-    var searchControl = new ymaps.control.SearchControl({
-        options: {
-            float: 'left',
-            floatIndex: 200,
-            noPlacemark: true,
-            searchControlMaxWidth: [30, 72, 500],
-            fitMaxWidth: true
-        }
-    });
-    myMap.controls.add(searchControl);
+        /* Move search panel to particular place on the map */
+        var searchControl = new ymaps.control.SearchControl({
+            options: {
+                float: 'left',
+                floatIndex: 200,
+                noPlacemark: true,
+                searchControlMaxWidth: [30, 72, 500],
+                fitMaxWidth: true
+            }
+        });
+        myMap.controls.add(searchControl);
 
-    /* Send all parks there */
-    <c:forEach items="${object}" var="i">
+        /* Send all parks there */
+        <c:forEach items="${object}" var="i">
         /* Place each parking place on the map */
         var myPlacemark = new ymaps.Placemark([${i.latitude}, ${i.longitude}],
             {
@@ -177,43 +177,43 @@ controls: []
             }
             document.getElementById('paid').innerHTML = 'Статус: ' + paid;
         });
-    clusterer.add(myPlacemark);
-    </c:forEach>
-    myMap.geoObjects.add(clusterer);
-}
+        clusterer.add(myPlacemark);
+        </c:forEach>
+        myMap.geoObjects.add(clusterer);
+    }
 
-var clBtn = document.getElementById('close-btn');
-clBtn.onclick = function() {
-    var panel = document.getElementById('left-panel');
-    panel.style.display = 'none';
-};
+    var clBtn = document.getElementById('close-btn');
+    clBtn.onclick = function() {
+        var panel = document.getElementById('left-panel');
+        panel.style.display = 'none';
+    };
 
-var clBtn1 = document.getElementById('close-btn1');
-clBtn1.onclick = function() {
-    var panel = document.getElementById('left-panel1');
-    panel.style.display = 'none';
-};
+    var clBtn1 = document.getElementById('close-btn1');
+    clBtn1.onclick = function() {
+        var panel = document.getElementById('left-panel1');
+        panel.style.display = 'none';
+    };
 
-var clBtn2 = document.getElementById('close-btn2');
-clBtn2.onclick = function() {
-    var panel = document.getElementById('left-panel2');
-    panel.style.display = 'none';
-};
+    var clBtn2 = document.getElementById('close-btn2');
+    clBtn2.onclick = function() {
+        var panel = document.getElementById('left-panel2');
+        panel.style.display = 'none';
+    };
 
-var search = document.getElementById('mt-2');
-search.onclick = function() {
-    document.getElementById('left-panel').style.display = 'none';
-    var panel = document.getElementById('left-panel1');
-    panel.style.display = 'block';
-};
+    var search = document.getElementById('mt-2');
+    search.onclick = function() {
+        document.getElementById('left-panel').style.display = 'none';
+        var panel = document.getElementById('left-panel1');
+        panel.style.display = 'block';
+    };
 
-var profile = document.getElementById('mt-3');
-profile.onclick = function() {
-    document.getElementById('left-panel').style.display = 'none';
-    document.getElementById('left-panel1').style.display = 'none';
-    var panel = document.getElementById('left-panel2');
-    panel.style.display = 'block';
-}
+    var profile = document.getElementById('mt-3');
+    profile.onclick = function() {
+        document.getElementById('left-panel').style.display = 'none';
+        document.getElementById('left-panel1').style.display = 'none';
+        var panel = document.getElementById('left-panel2');
+        panel.style.display = 'block';
+    }
 </script>
 
 </body>

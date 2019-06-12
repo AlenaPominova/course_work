@@ -16,4 +16,6 @@ public class PostgreSQLParkingQueries {
             " close_time=?, num_of_free_spots=?, address=?, " +
             " description=? " +
             " WHERE place_id = ?;";
+    public static String DELETE_FAVORITE_PLACES = "DELETE FROM public.favorite_places" +
+            " WHERE place_id = ?;";;
 }

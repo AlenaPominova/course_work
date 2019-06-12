@@ -68,10 +68,13 @@
                     document.getElementById('time').value = 'круглосуточно';
                     document.getElementById('paid').checked = false;
                     }
+
                     document.getElementById('selectPark').style.display = 'block';
                     document.getElementById('deleteButton').style.display = 'inline-block';
                     document.getElementById('updateButton').style.display = 'inline-block';
-                    document.getElementById('saveButton').style.display = 'none'
+                    document.getElementById('saveButton').style.display = 'none';
+
+                    document.getElementById('hiddenInput').value = ${i.id};
                     ">${i.address}
             </li>
             </c:forEach>
@@ -83,14 +86,25 @@
         <label>Свободных мест: </label> <input id="freeSpots" style="width: 50px;"> <br>
         <label>Время работы: </label> <input id="time" style="width: 150px;"> <br>
         <label>Платная: </label> <input type="checkbox" id="paid"> <br>
-        <label>Цена: </label> <input id="price" style="width: 50px;"> <label style="font-size: 0.8em">р./ч.</label> <br> <br> <br>
+        <label>Цена: </label> <input id="price" style="width: 50px;"> <label style="font-size: 0.8em">р./ч.</label>
+        <input id="hiddenInput" type="hidden" name="inputCheckbox">
+        <br> <br> <br>
         <br> <br> <br>
         <input class="button" id="saveButton" type="submit" value="Сохранить">
         <input class="button" id="updateButton" type="submit" value="Обновить" >
-        <input class="button" id="deleteButton" type="submit" value="Удалить" >
+
+        <form action="<%=request.getContextPath()%>/deletePark/17" method="POST">
+            <input class="button" id="deleteButton" type="submit" value="Удалить" onclick="deletePark()">
+        </form>
     </div>
 
 </div>
+
+<%--<script>--%>
+    <%--function deletePark() {--%>
+        <%--var id = document.get--%>
+    <%--}--%>
+<%--</script>--%>
 
 <footer class="footer">
     <ul class="name">
